@@ -20,7 +20,6 @@ const Home = () => {
     setCountries(
       countryList?.filter((country) => country.region === selectedContinent)
     );
-    console.log("FILTERED", countries);
   }, [selectedContinent]);
 
   const onSearchCountry = (e) => {
@@ -30,7 +29,6 @@ const Home = () => {
         country.name.common.toLowerCase().includes(searchCountry.toLowerCase())
       )
     );
-    console.log(countries);
   };
 
   return (

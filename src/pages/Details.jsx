@@ -1,31 +1,35 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useCountries from "../utils/useCountries";
 
 const Details = () => {
-  const [countryDetail, setCountryDetail] = useState();
-  const [currency, setCurrency] = useState();
   const { id } = useParams();
+  const navigate = useNavigate();
   const { countryList } = useCountries();
 
-  useEffect(() => {
-    setCountryDetail(() =>
-      countryList?.find((country) => country.area.toString() === id)
-    );
-    let curr = countryDetail && countryDetail?.currencies;
+  const countryDetail = countryList?.find(
+    (country) => country.area.toString() === id
+  );
 
-    setCurrency(curr && Object.keys(curr).join(""));
+  let curr = countryDetail && countryDetail?.currencies;
 
-    console.log(curr);
+  const currency = curr && Object.keys(curr).join("");
 
-    // console.log(countryDetail?.currencies[currency].name);
-
-    console.log("DETAILS", countryDetail, id);
-  }, [countryDetail]);
+  const border = countryDetail?.borders
+    ?.map((cntry) => {
+      return countryList?.filter((country) => country?.fifa === cntry);
+    })
+    .map((obj) => obj[0])
+    ?.map((objName) => objName?.name?.common);
 
   return (
     <section className="px-4 py-6 lg:px-24">
-      <button className="px-10 py-1 my-8 rounded-md shadow-lg">Back</button>
+      <button
+        className="px-10 py-1 my-8 rounded-md shadow-lg"
+        onClick={() => navigate(-1)}
+      >
+        Back
+      </button>
       <div className="flex flex-col justify-between mt-8 md:flex-row md:gap-0 gap-y-8">
         <img
           src={countryDetail?.flags.png}
@@ -76,11 +80,12 @@ const Details = () => {
 
           <div>
             <strong>Border Countries:</strong>
-            <div className="flex gap-4">
-              {countryDetail?.borders.map((border, id) => {
+            <div className="flex flex-wrap gap-4">
+              {border?.map((bd, id) => {
+                if (bd === undefined) return null;
                 return (
                   <div key={id} className="px-6 py-1 shadow-md w-fit">
-                    {border}
+                    {bd}
                   </div>
                 );
               })}
