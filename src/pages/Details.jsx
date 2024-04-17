@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useCountries from "../utils/useCountries";
 
 const Details = () => {
@@ -23,9 +23,9 @@ const Details = () => {
     ?.map((objName) => objName?.name?.common);
 
   return (
-    <section className="px-4 py-6 lg:px-24">
+    <section className="min-h-screen px-4 py-6 lg:px-24 dark:bg-bgDark dark:text-white">
       <button
-        className="px-10 py-1 my-8 rounded-md shadow-lg"
+        className="px-10 py-1 my-8 rounded-md shadow-md dark:shadow-black dark:bg-elDark"
         onClick={() => navigate(-1)}
       >
         Back
@@ -80,13 +80,22 @@ const Details = () => {
 
           <div>
             <strong>Border Countries:</strong>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 pt-4">
               {border?.map((bd, id) => {
                 if (bd === undefined) return null;
+                // countryList.filter((country) => {
+                //   country?.name.common === bd;
+                //   console.log(country);
+                // });
+
                 return (
-                  <div key={id} className="px-6 py-1 shadow-md w-fit">
+                  <Link
+                    key={id}
+                    className="px-6 py-1 shadow-md w-fit dark:bg-elDark"
+                    // to={`${}`}
+                  >
                     {bd}
-                  </div>
+                  </Link>
                 );
               })}
             </div>

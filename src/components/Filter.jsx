@@ -10,7 +10,7 @@ const Filter = ({ selectedContinent, setSelectedContinent }) => {
     <Menu as="div" className="relative inline-block w-48 text-left">
       {({ open }) => (
         <>
-          <Menu.Button className="inline-flex items-center justify-around gap-x-1.5 p-3 w-full rounded-md ring-1 ring-gray-300 bg-white shadow-md">
+          <Menu.Button className="inline-flex items-center justify-around gap-x-1.5 p-3 w-full rounded-md ring-1 ring-gray-300 bg-white dark:bg-elDark shadow-md">
             {selectedContinent}
             {open ? <RxCaretUp /> : <RxCaretDown />}
           </Menu.Button>
@@ -23,7 +23,7 @@ const Filter = ({ selectedContinent, setSelectedContinent }) => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg">
+            <Menu.Items className="absolute right-0 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg dark:bg-elDark">
               <div className="flex flex-col py-2">
                 {continent?.map((cont, id) => (
                   <Menu.Item key={id}>

@@ -5,9 +5,9 @@ const CountryCard = ({ country }) => {
   return (
     <Link
       to={`${country.area}`}
-      className="w-[80%] rounded-md shadow-md md:w-56 hover:scale-95 transition duration-150 ease-in"
+      className="w-[80%] rounded-md dark:bg-elDark shadow-md md:w-56 hover:scale-95 transition duration-150 ease-in"
     >
-      <div className="border h-36">
+      <div className=" h-36">
         <img src={country.flags.png} className=" size-full" />
       </div>
       <div className="p-6 text-left">

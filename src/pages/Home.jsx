@@ -4,7 +4,6 @@ import Filter from "../components/Filter";
 import CountryCard from "../components/CountryCard";
 import { FaSpinner } from "react-icons/fa6";
 import { useEffect, useState } from "react";
-
 const Home = () => {
   const { countryList, loading } = useCountries();
   const [selectedContinent, setSelectedContinent] =
@@ -32,11 +31,13 @@ const Home = () => {
   };
 
   return (
-    <main className="px-4 py-12 lg:px-12 bg-bgLight ">
+    <main
+      className={`px-4 py-12 min-h-screen lg:px-12 dark:bg-bgDark dark:text-white`}
+    >
       <section className="flex flex-col justify-between gap-8 lg:flex-row">
         <div className="relative border rounded-md">
           <input
-            className="lg:w-[24rem] w-full p-3 rounded-md shadow-md px-10"
+            className="lg:w-[24rem] dark:bg-elDark w-full p-3 rounded-md shadow-md px-10"
             placeholder="Search for a country..."
             onChange={onSearchCountry}
           />
